@@ -14,7 +14,7 @@ angular.module('myApp.login', ['ngRoute', 'ngCookies'])
     $scope.password = '';
     var loggedIn = $cookies.get('session');
     if (loggedIn === 'success') {
-      $location.path('/home');
+      $location.path('/main');
     }
     $scope.submit = function () {
       $http.post('/login', { 'username': $scope.username, 'password': $scope.password })
