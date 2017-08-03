@@ -6,12 +6,14 @@ angular.module('myApp', [
   'ngCookies',
   'myApp.login',
   'myApp.home',
-  'myApp.version'
+  'myApp.register',
+  'myApp.version',
+  'myApp.admin'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-        $routeProvider.when('/', {
-            templateUrl: 'login/login.html',
-            controller: 'login'
-        });
-}]);
+  config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
+    $routeProvider.when('/', {
+      templateUrl: 'login/login.html',
+      controller: 'login'
+    });
+  }]);
