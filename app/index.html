@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="app.css">
 </head>
 
-<body>
+<body ng-controller="mainCtrl">
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
@@ -34,25 +34,23 @@
   <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand">hello world</a>
+        <a class="navbar-brand">MentorShip</a>
       </div>
       <ul class="nav navbar-nav">
         <li>
-          <a href="#!/home">home</a>
-        </li>
-        <li>
-          <a href="#">about</a>
-        </li>
-        <li>
-          <a href="#">contact</a>
+          <a href="#!/home" ng-show="loggedIn">home</a>
+          <a href="#!/home" ng-show="loggedIn">calender</a>
+          <a href="#!/home" ng-show="loggedIn">dropbox</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="#!/register">register</a>
+          <a href="#!/register" ng-hide="loggedIn">register</a>
         </li>
         <li>
-          <a href="#!/login">login</a>
+
+          <a ng-hide="loggedIn" href="#!/login">login</a>
+          <a ng-show="loggedIn" ng-click="signout()">signout</a>
         </li>
       </ul>
     </div>
@@ -68,11 +66,14 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
   <script src="app.js"></script>
   <script src="login/login.js"></script>
   <script src="home/home.js"></script>
-  <script src="admin/admin.js"></script>
   <script src="register/register.js"></script>
+  <script src="components/assignments/assignments.js"></script>
+  <script src="components/admin/admin.js"></script>
+  <script src="profile/profileService.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>

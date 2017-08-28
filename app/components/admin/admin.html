@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row">
+        <section class="content">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4 class="pull-left">Assignments</h4>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#assignmentModal">Add Assignment</button>
+                            </div>
+                        </div>
+                        <div class="modal" id="assignmentModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Add Assignment</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label>Title</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                        <label>Description</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                        <label>Due Date:</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary">Create Assignment</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                    <tr data-status="Done" ng-repeat="item in ctrl.assignmentList">
+                                        <td>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <span class="media-meta pull-right">June 13, 2018</span>
+                                                    <h4 class="title">
+                                                        {{item.title}}
+                                                        <span class="pull-right">(overdue)</span>
+                                                    </h4>
+                                                    <p class="summary">{{item.description}}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.star').on('click', function () {
+                $(this).toggleClass('star-checked');
+            });
+
+            $('.ckbox label').on('click', function () {
+                $(this).parents('tr').toggleClass('selected');
+            });
+
+            $('.btn-filter').on('click', function () {
+                var $target = $(this).data('target');
+                if ($target != 'all') {
+                    $('.table tr').css('display', 'none');
+                    $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+                } else {
+                    $('.table tr').css('display', 'none').fadeIn('slow');
+                }
+            });
+
+        });
+    </script>
+</div>

@@ -21,6 +21,7 @@ app.use(session({
 }));
 require('./api/api')(app);
 // /* GET home page. */
+
 app.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
