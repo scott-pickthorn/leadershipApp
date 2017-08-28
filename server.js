@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -6,35 +7,26 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var app = express();
-//
-// // uncomment after placing your favicon in /public
-// //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
 
+app.use(session({
+    secret: 'motivation',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {}
+}));
+require('./api/api')(app);
 // /* GET home page. */
+
 app.get('/', function (req, res) {
-    res.render('login/login', { title: 'Express' });
-});
-app.get('/#!/home', function (req, res) {
-    console.log('called');
-    res.render('home/home', { title: 'Express' });
-});
-app.post('/login', function (req, res) {
-    console.log(req.body);
-    res.status(403);
-    res.send('invalid login');
-});
-app.get('/user/:id', function (req, res) {
-    console.log(req.body);
-    res.status(403);
-    res.send('invalid login');
+    res.render('index', { title: 'Express' });
 });
 app.get('*', function (req, res) {
-    res.render('index', { title: 'Express' });
+    res.render('/home/home', { title: 'Express' });
 });
 
 // // catch 404 and forward to error handler

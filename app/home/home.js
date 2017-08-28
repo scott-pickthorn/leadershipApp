@@ -9,6 +9,18 @@ angular.module('myApp.home', ['ngRoute'])
     });
   }])
 
-  .controller('home', ['$scope', '$cookies', function ($scope, $cookies) {
-    $scope.username = $cookies.get('username');
+  .controller('home', ['jwtHelper', '$location', '$http', '$scope', '$cookies', 'profileService', function (jwtHelper, $location, $http, $scope, $cookies, profileService) {
+    $scope.username = profileService.getUsername();
+    var profile = profileService.getProfile();
+    console.log($scope.username)
+    if ($scope.username === undefined) {
+      $location.path('/login');
+    }
+    console.log(profile);
+    if (profile) {
+      $scope.admin = true;
+    }
+    else {
+      $scope.admin = false;
+    }
   }]);
