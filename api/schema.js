@@ -1,20 +1,20 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.schema;
 
-var userSchema = new Schema({
+const userSchema = new Schema({
     username: String,
     password: String,
     id: String,
-    admin: Boolean,
     profile: {
+        mentorId: String,
+        admin: Boolean,
         assignments: [{
             id: String,
-            mentorId: String,
             title: String,
             type: String,
             description: String,
-            start: {type: Date, default: Date.now},
-            status: String, 
+            start: { type: Date, default: Date.now },
+            status: String,
             dueDate: Date,
         }]
     }

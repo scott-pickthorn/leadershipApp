@@ -20,21 +20,27 @@
         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <label>Title</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" />
-                                        </div>
-                                        <label>Description</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" />
-                                        </div>
-                                        <label>Due Date:</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" />
-                                        </div>
+                                        <form data-toggle="validator" role="form">
+                                            <label>Title</label>
+                                            <div class="form-group has-feedback">
+                                                <input type="text" class="form-control" ng-model="ctrl.assignmentTitle" required>
+                                                <div class="help-block with-errors">Hey look, this one has feedback icons!</div>
+                                            </div>
+                                            <label>Description</label>
+                                            <div class="form-group has-feedback">
+                                                <input type="text" class="form-control" ng-model="ctrl.assignmentDescription" required>
+                                            </div>
+                                            <label>Due Date:</label>
+                                            <div class="input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy">
+                                                <input type="text" class="form-control" ng-model="ctrl.date">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Create Assignment</button>
+                                        <button type="button" class="btn btn-primary" ng-click="ctrl.setAssignment()" data-dismiss="modal">Create Assignment</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
@@ -50,9 +56,13 @@
                                                     <span class="media-meta pull-right">June 13, 2018</span>
                                                     <h4 class="title">
                                                         {{item.title}}
-                                                        <span class="pull-right">(overdue)</span>
                                                     </h4>
                                                     <p class="summary">{{item.description}}</p>
+                                                    <p class="summary">{{item.start}}</p>
+                                                    <p class="summary">{{item.dueDate}}</p>
+                                                    <ul ng-repeat="user in item.userList">
+                                                        <li>{{user}}</li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </td>

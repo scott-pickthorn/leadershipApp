@@ -8,7 +8,6 @@ angular.module('myApp', [
   'myApp.login',
   'myApp.home',
   'myApp.register',
-  'myApp.version',
   'myApp.admin',
   'myApp.assignments',
   'myApp.profileService'
@@ -20,21 +19,21 @@ angular.module('myApp', [
       controller: 'login'
     });
   }]).
-  config(['$httpProvider','jwtOptionsProvider', function($httpProvider,jwtOptionsProvider){
+  config(['$httpProvider', 'jwtOptionsProvider', function ($httpProvider, jwtOptionsProvider) {
     jwtOptionsProvider.config({
       unauthenticatedRedirectPath: '/login'
     });
   }])
-  .controller('mainCtrl', ['$rootScope','$scope','$cookies','profileService','$location', function($rootScope,$scope, $cookies, profileService, $location){
+  .controller('mainCtrl', ['$rootScope', '$scope', '$cookies', 'profileService', '$location', function ($rootScope, $scope, $cookies, profileService, $location) {
     var username = profileService.getProfile()
     $rootScope.loggedIn = false
-    if(username === undefined){
-      $rootScope.loggedIn = false;      
+    if (username === undefined) {
+      $rootScope.loggedIn = false;
     }
-    else{
+    else {
       $rootScope.loggedIn = true;
     }
-    $scope.signout = function(){
+    $scope.signout = function () {
       $cookies.remove('token');
       $rootScope.loggedIn = false;
       profileService.clearProfile();

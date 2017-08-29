@@ -13,10 +13,13 @@ angular.module('myApp.register', ['ngRoute'])
         $scope.username = '';
         $scope.password = '';
         $scope.submit = function () {
-            $http.post('/api/auth/register', { 'username': $scope.username, 'password': $scope.password }).then(function (res) { 
+            if ($scope.username === '' || $scope.password === '') {
+                return;
+            }
+            $http.post('/api/auth/register', { 'username': $scope.username, 'password': $scope.password }).then(function (res) {
                 console.log(res);
-                $location.path('/home'); 
-            },function(err){
+                $location.path('/home');
+            }, function (err) {
                 console.log(err);
             });
         };

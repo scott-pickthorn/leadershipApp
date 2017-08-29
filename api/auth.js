@@ -43,29 +43,8 @@ module.exports.register = function (req, res) {
                         "password": req.body.password,
                         "profile": {
                             "mentorId": "59a3992722297d03d040c48c",
-                            "admin": true,
-                            "assignments": [{
-                                "id": uuidv1(),
-                                "title": 'first assignment',
-                                "description": 'this is a demo assignmetn',
-                                "start": new Date(),
-                                "status": "Todo",
-                                "dueDate": new Date(),
-                            }, {
-                                "id": uuidv1(),
-                                "title": 'another assignment',
-                                "description": 'another demo assignment',
-                                "start": new Date(),
-                                "status": "In progress",
-                                "dueDate": new Date(),
-                            }, {
-                                "id": uuidv1(),
-                                "title": 'test assignment',
-                                "description": 'we getting assignments',
-                                "start": new Date(),
-                                "status": "Todo",
-                                "dueDate": new Date(),
-                            }]
+                            "admin": false,
+                            "assignments": []
                         }
                     });
                     var token = jwt.sign({ data: req.body.username }, 'shhhh');
@@ -74,7 +53,6 @@ module.exports.register = function (req, res) {
                 });
             }
             else {
-                console.log('first');
                 res.status(403);
                 res.send({ "err": "username already exists" });
                 return;

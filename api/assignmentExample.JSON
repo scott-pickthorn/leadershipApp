@@ -1,0 +1,22 @@
+[{
+    "id": uuidv1(),
+    "title": 'first assignment',
+    "description": 'this is a demo assignmetn',
+    "start": new Date(),
+    "status": "Todo",
+    "dueDate": new Date(),
+}, {
+    "id": uuidv1(),
+    "title": 'another assignment',
+    "description": 'another demo assignment',
+    "start": new Date(),
+    "status": "Todo",
+    "dueDate": new Date(),
+}, {
+    "id": uuidv1(),
+    "title": 'test assignment',
+    "description": 'we getting assignments',
+    "start": new Date(),
+    "status": "Todo",
+    "dueDate": new Date(),
+}]

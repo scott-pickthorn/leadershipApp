@@ -22,8 +22,15 @@ angular.module('myApp.profileService', [])
                     return err;
                 });
         }
-        this.setAssignments = function () {
+        this.setAssignment = function (id, assignment, userList) {
             return $http.post('/api/admin/assignments', { params: { 'userList': userList, 'id': id, 'assignment': assignment } }).then(function (res) {
+                return res;
+            }, function (err) {
+                return err;
+            });
+        }
+        this.setAssignmentStatus = function (username, id, status) {
+            return $http.post('/api/user/assignments', { params: { 'username': username, 'assignmentid': id, 'status': status } }).then(function (res) {
                 return res;
             }, function (err) {
                 return err;
